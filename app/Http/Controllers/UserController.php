@@ -42,4 +42,25 @@ class UserController extends Controller
         // Redirecionar com mensagem de sucesso
         return redirect('/')->with('success', 'Postagem enviada com sucesso!');
     }
+
+    public function visualizarLogin(){
+        return view('pages.login');
+    }
+
+    public function login(Request $request){
+
+        $usuario = new User;
+
+        $usuario->email = $request->email;
+        $usuario->password = $request->password;
+
+        $usuarioBanco = User::find($usuario->email);
+
+        if(){
+            
+        }
+        
+    }
+
+
 }
