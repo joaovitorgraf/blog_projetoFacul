@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -49,16 +50,18 @@ class UserController extends Controller
 
     public function login(Request $request){
 
-        $usuario = new User;
-
-        $usuario->email = $request->email;
-        $usuario->password = $request->password;
-
-        $usuarioBanco = User::find($usuario->email);
-
-        if(){
-            
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('dashboard');
         }
+ 
+        return redirect('/')->with('success', 'Login efetuado com sucesso!');
         
     }
 

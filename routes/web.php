@@ -10,5 +10,7 @@ Route::get('login/{id_usuario}/postagem/', [PostagemController::class, 'create']
 Route::get('postagem/{id}', [PostagemController::class, 'readOne'])->name('readOnePostagem');
 Route::post('/postagem', [PostagemController::class, 'store'])->name('savePostagem');
 
-Route::get('login/cadastro', [UserController::class, 'create'])->name('createUser');
+Route::get('cadastro', [UserController::class, 'create'])->name('createUser');
 Route::post('login/saveuser', [UserController::class, 'store'])->name('saveUser');
+Route::get('/login', [UserController::class, 'visualizarLogin'])->name('visualizarLogin');
+Route::post('/login', [UserController::class, 'login'])->name('validarLogin');
