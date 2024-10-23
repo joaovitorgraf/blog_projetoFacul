@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Postagen;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -49,6 +50,9 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
+        $email = $request->email;
+
+        $usuario = User::where('email', $email)->first();
 
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -60,9 +64,26 @@ class UserController extends Controller
  
             return redirect()->intended('dashboard');
         }
+
+        $redirect = '/login/' . $usuario->id;
  
-        return redirect('/')->with('success', 'Login efetuado com sucesso!');
+        return redirect($redirect)->with('success', 'Login efetuado com sucesso!');
         
+    }
+
+    public function showUser(int $id){
+        $usuario = User::findOrFail($id);
+
+        $postagens = Postagen::where('id_usuario', $id)->get();
+
+        $quantidadePostagens = $postagens->count();
+
+        return view('pages.showUsuario', 
+        [
+            'postagens' => $postagens,
+            'usuario' => $usuario,
+            'quanridadePost' => $quantidadePostagens
+        ]);
     }
 
 

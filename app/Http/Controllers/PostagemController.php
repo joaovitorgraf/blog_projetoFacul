@@ -57,4 +57,13 @@ class PostagemController extends Controller
         // Redirecionar com mensagem de sucesso
         return redirect($redirect)->with('success', 'Postagem enviada com sucesso!');
     }
+
+    public function delete(int $id)
+    {
+        $postagem = Postagen::findOrFail($id);
+
+        $postagem->delete();
+
+        return redirect()->back()->with('success', 'Postagem deletada com sucesso!');
+    }
 }
