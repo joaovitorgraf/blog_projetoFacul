@@ -69,7 +69,7 @@ class UserController extends Controller
             return redirect()->intended($redirect);
         }
 
-        return redirect('/login')->with('success', 'Usuario/Senha incorretas');
+        return redirect('/login')->with('error', 'Usuario/Senha incorretos');
     }
 
     public function showUser(int $id)

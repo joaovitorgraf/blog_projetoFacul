@@ -29,6 +29,14 @@ class PostagemController extends Controller
 
     public function create(int $id_usuario)
     {
+        $usuario = User::find($id_usuario)->first();
+
+        if ($usuario->permissao === 'False') {
+            $redirect = '/login/' . $usuario->id;
+
+            return redirect($redirect)->with('error', 'Você não tem permissão para criar postagem!');
+        }
+
         return view('pages.postagemCreate', ['id_usuario' => $id_usuario]);
     }
 
