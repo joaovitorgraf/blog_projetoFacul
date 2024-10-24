@@ -9,7 +9,7 @@
     @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
-    </div>8
+    </div>
     @endif
 
     <form action="{{ route('validarLogin') }}" method="POST" enctype="multipart/form-data">
