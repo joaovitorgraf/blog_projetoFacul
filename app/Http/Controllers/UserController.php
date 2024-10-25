@@ -45,11 +45,13 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Postagem enviada com sucesso!');
     }
 
-    public function visualizarLogin(){
+    public function visualizarLogin()
+    {
         return view('pages.login');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $email = $request->email;
 
         $usuario = User::where('email', $email)->first();
@@ -58,33 +60,33 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
+            $redirect = '/login/' . $usuario->id;
+
             $request->session()->regenerate();
- 
-            return redirect()->intended('dashboard');
+
+            return redirect()->intended($redirect);
         }
 
-        $redirect = '/login/' . $usuario->id;
- 
-        return redirect($redirect)->with('success', 'Login efetuado com sucesso!');
-        
+        return redirect('/login')->with('error', 'Usuario/Senha incorretos!');
     }
 
-    public function showUser(int $id){
+    public function showUser(int $id)
+    {
         $usuario = User::findOrFail($id);
 
         $postagens = Postagen::where('id_usuario', $id)->get();
 
         $quantidadePostagens = $postagens->count();
 
-        return view('pages.showUsuario', 
-        [
-            'postagens' => $postagens,
-            'usuario' => $usuario,
-            'quanridadePost' => $quantidadePostagens
-        ]);
+        return view(
+            'pages.showUsuario',
+            [
+                'postagens' => $postagens,
+                'usuario' => $usuario,
+                'quanridadePost' => $quantidadePostagens
+            ]
+        );
     }
-
-
 }

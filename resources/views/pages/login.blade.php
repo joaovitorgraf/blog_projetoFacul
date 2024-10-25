@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Usuario')
+@section('title', 'Login')
 
 @section('content')
 <div class="container mt-5">
@@ -9,7 +9,13 @@
     @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
-    </div>8
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
     @endif
 
     <form action="{{ route('validarLogin') }}" method="POST" enctype="multipart/form-data">
