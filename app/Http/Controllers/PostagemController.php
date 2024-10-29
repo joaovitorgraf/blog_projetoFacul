@@ -48,6 +48,7 @@ class PostagemController extends Controller
         $postagem->id_usuario = $request->id_usuario;
         $postagem->titulo = $request->titulo;
         $postagem->conteudo = $request->conteudo;
+        $postagem->categoria = $request->categoria;
 
         //Image upload
         if ($request->hasFile('capa') && $request->file('capa')->isValid()) {

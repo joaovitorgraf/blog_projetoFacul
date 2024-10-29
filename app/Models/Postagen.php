@@ -16,6 +16,7 @@ class Postagen extends Model
         'conteudo',
         'capa',
         'data_postagem',
+        'categoria',
     ];
 
     protected static function boot()
