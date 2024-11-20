@@ -28,6 +28,7 @@
                 <p>Autor: {{ $usuario->name ?? 'Desconhecido' }}</p>
 
                 <a href="/postagem/{{ $postagem->id }}">Ver mais</a>
+                <a href="/postagem/editar/{{ $postagem->id }}">Editar</a>
                 <form action="{{ route('deletePostagem', $postagem->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar esta postagem?');">
                     @csrf
                     @method('DELETE')
