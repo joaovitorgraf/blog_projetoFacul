@@ -16,4 +16,5 @@ Route::post('login/saveuser', [UserController::class, 'store'])->name('saveUser'
 Route::get('/login', [UserController::class, 'visualizarLogin'])->name('visualizarLogin');
 Route::post('/login', [UserController::class, 'login'])->name('validarLogin');
 
-Route::get('/login/{id}', [UserController::class, 'showUser'])->name('visualizarUsuario');
+Route::get('/login/{id}', [UserController::class, 'showUser'])->middleware('validate.session')->name('visualizarUsuario');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');

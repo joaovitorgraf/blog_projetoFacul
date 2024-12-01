@@ -42,7 +42,7 @@ class UserController extends Controller
         $usuario->save();
 
         // Redirecionar com mensagem de sucesso
-        return redirect('/')->with('success', 'Postagem enviada com sucesso!');
+        return redirect('/login')->with('success', 'Conta criada com sucesso!');
     }
 
     public function visualizarLogin()
@@ -74,6 +74,12 @@ class UserController extends Controller
 
     public function showUser(int $id)
     {
+        $authUser = Auth::user();
+
+        if ($authUser->id != $id) {
+            return redirect('/login')->with('error', 'Acesso negado. Você não pode visualizar o perfil de outro usuário.');
+        }
+
         $usuario = User::findOrFail($id);
 
         $postagens = Postagen::where('id_usuario', $id)->get();
@@ -88,5 +94,15 @@ class UserController extends Controller
                 'quanridadePost' => $quantidadePostagens
             ]
         );
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login')->with('success', 'Você saiu com sucesso.');
     }
 }
