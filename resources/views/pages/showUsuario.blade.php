@@ -19,7 +19,16 @@
         </div>
         <div class="col-6">
             <div class="row mt-5">
-                <h5>Publicações</h5>
+                <div class="col-6">
+                    <h5>Publicações</h5>
+                </div>
+                <div class="col-6">
+                    <a href="/login/{{ $usuario->id }}/postagem">Criar Postagem</a>
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Sair</button>
+                    </form>
+                </div>
             </div>
             @foreach($postagens as $postagem)
             <div class="row mt-3">
@@ -27,7 +36,10 @@
                     <div class="row" style="text-align: start; margin-left: 1%;">
                         <div class="col-12 m-0 p-0">
                             <h3>{{ $postagem->titulo }}</h3>
-                            <p>{{ $postagem->conteudo }}</p>
+                            <p>
+                                {!! \Illuminate\Support\Str::limit($postagem->conteudo, 226, '...') !!}
+                                <a href="/postagem/{{ $postagem->id }}" style="color: blue; text-decoration: underline;">Leia mais</a>
+                            </p>
                         </div>
                     </div>
                     <div class="row">
@@ -36,9 +48,6 @@
                         </div>
                         <div class="col-6 m-0 p-0 d-flex flex-row justify-content-center">
                             <h5 style="font-size: 0.8rem; margin-left: 5%;"><i class="fa-regular fa-comments"></i> 100k</h5>
-                        </div>
-                        <div class="col-2 m-0 p-0">
-                            <a href="/postagem/{{ $postagem->id }}">Ver mais</a>
                         </div>
                     </div>
                 </div>
@@ -58,7 +67,6 @@
     </div>
 
 
-    <a href="/login/{{ $usuario->id }}/postagem">Criar Postagem</a>
 </div>
 
 @endsection
