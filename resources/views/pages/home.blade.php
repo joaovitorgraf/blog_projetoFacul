@@ -62,15 +62,15 @@
     <!-- Seção de artigos (Lista de posts) -->
     <div class="row my-5">
         <div class="col-md-8">
-
+            @foreach($postagens as $postagem)
             <div class="row"> <!-- aqui será fixo -->
                 <div class="row mt-5"> <!-- aqui será volátil -->
                     <div class="row">
                         <div class="col-sm-2">
-                            <span class="border rounded-circle p-4 d-block"></span>
+                            <img class="border rounded-circle p-4 d-block" src="/img/usuario/{{ $usuario[$postagem->id_usuario]->foto }}">
                         </div>
-                        <div class="col-sm-10 d-flex" style="align-items: center;">
-                            <h5>Nome do colunista</h5>
+                        <div class=" col-sm-10 d-flex" style="align-items: center;">
+                            <h5>{{ $usuario[$postagem->id_usuario]->name ?? 'Desconhecido' }}</h5>
                         </div>
                     </div>
                 </div>
@@ -78,27 +78,28 @@
                     <div class="col-md-8">
                         <div class="row" style="text-align: start; margin-left: 2%;">
                             <div class="col-12 m-0 p-0">
-                                <h3>Titulo do artigo ficará aqui</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                <h3>{{ $postagem->titulo }}</h3>
+                                <p>{{ $postagem->conteudo }}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-4 m-0 p-0">
-                                <h5 style="font-size: 0.8rem;">01 setembro 2024</h5>
+                                <h5 style="font-size: 0.8rem;">{{ $postagem->data_postagem }}</h5>
                             </div>
                             <div class="col-6 m-0 p-0 d-flex flex-row justify-content-center">
                                 <h5 style="font-size: 0.8rem; margin-left: 5%;"><i class="fa-regular fa-comments"></i> 100k</h5>
                             </div>
                             <div class="col-2 m-0 p-0">
-                                <h5 style="font-size: 0.8rem;"><i class="fa-solid fa-share"></i></h5>
+                                <a href="/postagem/{{ $postagem->id }}">Ver mais</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <img style="width: 100%;" src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                        <img style="width: 100%;" src="/img/capa/{{ $postagem->capa }}">
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
 
         <!-- Seção lateral (lista de links) -->
@@ -146,23 +147,6 @@
                 </li>
             </ul>
         </div>
-    </div>
-
-
-    <div>
-        @foreach($postagens as $postagem)
-        <div>
-            <img src="/img/capa/{{ $postagem->capa }}" alt="{{ $postagem->titulo }}">
-            <div>
-                <p>Data da Postagem: {{ $postagem->data_postagem }}</p>
-                <h5>Titulo: {{ $postagem->titulo }}</h5>
-                <p>Conteudo: {{ $postagem->conteudo }}</p>
-                <p>Autor: {{ $usuario[$postagem->id_usuario]->name ?? 'Desconhecido' }}</p>
-
-                <a href="/postagem/{{ $postagem->id }}">Ver mais</a>
-            </div>
-        </div>
-        @endforeach
     </div>
 </div>
 
