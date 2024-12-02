@@ -14,8 +14,8 @@
             </span>
         </div>
     </div> -->
-    <div class="row justify-content-center align-items-center mb-5" style=" background: linear-gradient(to top, black, transparent); border-radius: 2rem;">
-        <img src="/img/capa/{{ $postagem->capa }}" alt="{{ $postagem->titulo }}" style="width: 50%; opacity: 48%; height: 196px; object-fit: contain;">
+    <div class="row justify-content-center align-items-center mb-5" style="background: linear-gradient(to top, black, transparent); border-radius: 2rem;">
+        <img src="/img/capa/{{ $postagem->capa }}" alt="{{ $postagem->titulo }}" style="width: 50%; opacity: 48%; object-fit: contain;">
         <div class="text-start text-white" style="position: relative; z-index: 1;">
             <h1>{{ $postagem->titulo }}</h1>
             <p>Publicado em: {{ $postagem->data_postagem }}</p>
@@ -32,7 +32,7 @@
                     <div class="col-sm-2 m-0 p-0">
                         <span class="border rounded-circle p-4 d-block"></span>
                     </div>
-                    <div class="col-sm-4 ms-2 m-0 p-0" style="align-items: start; text-align: start;">
+                    <div class="col-sm-6 ms-2 m-0 p-0" style="align-items: start; text-align: start;">
                         <a style="font-size: 0.9rem;">Nome do Usuário</a>
                         <a style="font-size: 0.9rem;">12/05/2024</a>
                     </div>

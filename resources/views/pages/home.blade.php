@@ -4,14 +4,14 @@
 
 @section('content')
 
-<div style="font-family: Kalnia;">
+<div style="font-family: Poppins;">
 
     <!-- Título do Blog -->
-    <h1 class="display-3">NOME DO BLOG</h1>
-    <p class="lead">Frase de impacto</p>
+    <h1 class="display-3" style="font-weight: 600; margin-top: 15%;">FATOS EM PERSPECTIVA</h1>
+    <p class="lead">Todo ângulo revela uma <a style="text-decoration: underline; color: #000; text-decoration-thickness: .8px;">nova história</a></p>
 
     <!-- Cards (3 blocos lado a lado) -->
-    <div class="row my-5">
+    <div class="row my-5" style="margin-top: 15% !important;">
         <div class="col-md-4">
             <div class="card p-4">
                 <div class="card-body">
