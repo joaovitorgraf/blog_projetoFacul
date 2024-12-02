@@ -19,11 +19,11 @@
         </div>
         <div class="col-6">
             <div class="row mt-5">
-                <div class="col-6">
+                <div class="col-6" style="text-align: start;">
                     <h5>Publicações</h5>
                 </div>
                 <div class="col-6">
-                    <a href="/login/{{ $usuario->id }}/postagem">Criar Postagem</a>
+                    <a class="btn btn-outline-primary" href="/login/{{ $usuario->id }}/postagem">Criar Postagem</a>
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit" class="btn btn-danger">Sair</button>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             @foreach($postagens as $postagem)
-            <div class="row mt-3">
+            <div class="row mt-5">
                 <div class="col-md-8">
                     <div class="row" style="text-align: start; margin-left: 1%;">
                         <div class="col-12 m-0 p-0">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <img style="width: 100%;" src="/img/capa/{{ $postagem->capa }}" alt="{{ $postagem->titulo }}">
+                    <img style="width: 196px; height: 196px; object-fit: contain;" src="/img/capa/{{ $postagem->capa }}" alt="{{ $postagem->titulo }}">
                 </div>
             </div>
             <div class="row mt-2" style="text-align: start;">
