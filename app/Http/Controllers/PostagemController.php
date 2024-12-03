@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comentario;
 use App\Models\Postagen;
 use App\Models\User;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,7 +26,16 @@ class PostagemController extends Controller
 
         $user = User::whereIn('id', $postagem->pluck('id_usuario'))->get()->keyBy('id');
 
-        return view('pages.postagemOne', ['postagem' => $postagem, 'usuario' => $user]);
+        $comentarios = Comentario::where('id_postagem', $id)
+            ->with('user')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('pages.postagemOne', [
+            'postagem' => $postagem,
+            'usuario' => $user,
+            'comentarios' => $comentarios
+        ]);
     }
 
     public function create(int $id_usuario)

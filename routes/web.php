@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostagemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ComentarioControler;
 
 Route::get('/', [PostagemController::class, 'index'])->name('home');
 Route::get('login/{id_usuario}/postagem/', [PostagemController::class, 'create'])->name('createPostagem');
@@ -18,3 +19,5 @@ Route::post('/login', [UserController::class, 'login'])->name('validarLogin');
 
 Route::get('/login/{id}', [UserController::class, 'showUser'])->middleware('validate.session')->name('visualizarUsuario');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::post('/savecomentario', [ComentarioControler::class, 'create'])->name('salvar.comentario');

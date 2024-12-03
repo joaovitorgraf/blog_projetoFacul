@@ -28,18 +28,34 @@
         <div class="col-4">
             <div class="row ms-2">
                 <h2 class="m-0 p-0" style="font-weight: 700; font-size: 1rem; text-align: start;">Comentários sobre o artigo</h2>
+
+                <form action="{{ route('salvar.comentario') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id_usuario" value="{{ $usuario[$postagem->id_usuario]->id }}" required>
+                    <input type="hidden" name="id_postagem" value="{{ $postagem->id }}" required>
+
+
+                    <label for="conteudo" class="form-label">Comentario</label>
+                    <input class="form-control" id="comentario" name="comentario" required>
+
+
+                    <button type="submit" class="btn btn-primary">Comentar</button>
+                </form>
+
+                @foreach($comentarios as $comentario)
                 <div class="row mt-4 justify-content-start align-items-center">
                     <div class="col-sm-2 m-0 p-0">
                         <span class="border rounded-circle p-4 d-block"></span>
                     </div>
                     <div class="col-sm-6 ms-2 m-0 p-0" style="align-items: start; text-align: start;">
-                        <a style="font-size: 0.9rem;">Nome do Usuário</a>
-                        <a style="font-size: 0.9rem;">12/05/2024</a>
+                        <a style="font-size: 0.9rem;">{{ $comentario->user->name }}</a></br>
+                        <a style="font-size: 0.9rem;">{{ $comentario->created_at }}</a>
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <p style="font-size: .8rem; text-align: start;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+                    <p style="font-size: .8rem; text-align: start;">{{ $comentario->comentario }}</p>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
