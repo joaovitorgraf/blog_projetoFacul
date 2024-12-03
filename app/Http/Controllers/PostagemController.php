@@ -76,7 +76,6 @@ class PostagemController extends Controller
 
         $redirect = '/login/' . $postagem->id_usuario . '/postagem';
 
-        // Redirecionar com mensagem de sucesso
         return redirect($redirect)->with('success', 'Postagem enviada com sucesso!');
     }
 
@@ -98,29 +97,37 @@ class PostagemController extends Controller
         return redirect()->back()->with('success', 'Postagem deletada com sucesso!');
     }
 
-    public function editar(Request $request, $id){
+    public function editar(Request $request, $id)
+    {
 
-        $postagem = new Postagen;
-        var_dump($postagem->capa);
+        $validated = $request->validate([
+            'titulo' => 'required|string|max:255',
+            'conteudo' => 'required|string',
+            'categoria' => 'required|string|max:100',
+            'capa' => 'nullable|file|mimes:jpg,jpeg,png|max:2048', // Suporte a imagens
+        ]);
 
-        $postagem->titulo = $request->titulo;
-        $postagem->conteudo = $request->conteudo;
-        $postagem->id_usuario = $request->id_usuario;
-        $postagem->categoria = $request->categoria;
-        $postagem->capa = $request->capa;
+        $postagem = Postagen::findOrFail($id);
 
-        $buscarBanco = Postagen::findOfFail($id);
-        $buscarBanco->update($postagem);
+        if ($request->hasFile('capa')) {
+            $capaPath = $request->file('capa')->store('capas', 'public');
+            $validated['capa'] = $capaPath;
 
-        return redirect()->back()->with('success', 'Postagem editada com sucesso!');
+            if ($postagem->capa) {
+                Storage::disk('public')->delete($postagem->capa);
+            }
+        }
+
+        $postagem->update($validated);
+
+        return redirect()->route('visualizarEditar', $id)->with('success', 'Postagem atualizada com sucesso!');
     }
 
-    public function visualizarEditar(int $id){
-        
+    public function visualizarEditar(int $id)
+    {
+
         $postagem = Postagen::find($id);
 
         return view('pages.editarPostagem', ['postagem' => $postagem]);
     }
-
 }
-
