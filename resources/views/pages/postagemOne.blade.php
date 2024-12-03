@@ -28,10 +28,10 @@
         <div class="col-4">
             <div class="row ms-2">
                 <h2 class="m-0 p-0" style="font-weight: 700; font-size: 1rem; text-align: start;">Comentários sobre o artigo</h2>
-
+                @if(auth()->check())
                 <form action="{{ route('salvar.comentario') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="id_usuario" value="{{ $usuario[$postagem->id_usuario]->id }}" required>
+                    <input type="hidden" name="id_usuario" value="{{ $idUsuarioLogado }}" required>
                     <input type="hidden" name="id_postagem" value="{{ $postagem->id }}" required>
 
 
@@ -41,6 +41,7 @@
 
                     <button type="submit" class="btn btn-primary">Comentar</button>
                 </form>
+                @endif
 
                 @foreach($comentarios as $comentario)
                 <div class="row mt-4 justify-content-start align-items-center">

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comentario;
 use App\Models\Postagen;
 use App\Models\User;
-use Illuminate\Container\Attributes\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,10 +31,13 @@ class PostagemController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
+        $idUsuarioLogado = Auth::id();
+
         return view('pages.postagemOne', [
             'postagem' => $postagem,
             'usuario' => $user,
-            'comentarios' => $comentarios
+            'comentarios' => $comentarios,
+            'idUsuarioLogado' => $idUsuarioLogado
         ]);
     }
 
