@@ -97,4 +97,30 @@ class PostagemController extends Controller
 
         return redirect()->back()->with('success', 'Postagem deletada com sucesso!');
     }
+
+    public function editar(Request $request, $id){
+
+        $postagem = new Postagen;
+        var_dump($postagem->capa);
+
+        $postagem->titulo = $request->titulo;
+        $postagem->conteudo = $request->conteudo;
+        $postagem->id_usuario = $request->id_usuario;
+        $postagem->categoria = $request->categoria;
+        $postagem->capa = $request->capa;
+
+        $buscarBanco = Postagen::findOfFail($id);
+        $buscarBanco->update($postagem);
+
+        return redirect()->back()->with('success', 'Postagem editada com sucesso!');
+    }
+
+    public function visualizarEditar(int $id){
+        
+        $postagem = Postagen::find($id);
+
+        return view('pages.editarPostagem', ['postagem' => $postagem]);
+    }
+
 }
+

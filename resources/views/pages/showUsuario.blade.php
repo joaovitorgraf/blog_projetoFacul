@@ -61,6 +61,11 @@
                     @method('DELETE')
                     <button class="btn btn-outline-secondary" type="submit">Deletar</button>
                 </form>
+                <form action="{{ route('editarPostagem', $postagem->id) }}" method="PUT">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-outline-secondary" type="submit">Editar</button>
+                </form>
             </div>
             @endforeach
         </div>
