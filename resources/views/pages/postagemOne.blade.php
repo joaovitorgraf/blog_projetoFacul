@@ -46,7 +46,7 @@
                 @foreach($comentarios as $comentario)
                 <div class="row mt-4 justify-content-start align-items-center">
                     <div class="col-sm-2 m-0 p-0">
-                        <span class="border rounded-circle p-4 d-block"></span>
+                        <img class="border rounded-circle p-4 d-block" src="/img/usuario/{{ $comentario->user->foto }}" style="width: 100px; height: 100px; object-fit: contain;">
                     </div>
                     <div class="col-sm-6 ms-2 m-0 p-0" style="align-items: start; text-align: start;">
                         <a style="font-size: 0.9rem;">{{ $comentario->user->name }}</a></br>
