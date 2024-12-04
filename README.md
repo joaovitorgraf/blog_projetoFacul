@@ -1,12 +1,15 @@
 ## PROJETO - BLOG
 
 Este trabalho tem como objetivo obter nota na M2 de Desenvolvimento Web II do professor Leandro Bona;
+<br>
 Criação de um blog aonde é possível fazer ver publicações, cadastrar usuário, fazer login, fazer postagens, editar/deletar postagens e fazer comentários em postagens.
 
 ## ALUNOS
 
 João Vitor Graf
+<br>
 Luiz Henrique Bonin
+<br>
 Thaís Eduarda Stanchack
 
 ## Iniciando o projeto
