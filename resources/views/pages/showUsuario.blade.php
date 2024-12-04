@@ -46,9 +46,6 @@
                         <div class="col-4 m-0 p-0">
                             <h5 style="font-size: 0.8rem;">{{ $postagem->data_postagem }}</h5>
                         </div>
-                        <div class="col-6 m-0 p-0 d-flex flex-row justify-content-center">
-                            <h5 style="font-size: 0.8rem; margin-left: 5%;"><i class="fa-regular fa-comments"></i> 100k</h5>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -56,16 +53,16 @@
                 </div>
             </div>
             <div class="row mt-2" style="text-align: start;">
-                <form action="{{ route('deletePostagem', $postagem->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar esta postagem?');">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-outline-secondary" type="submit">Deletar</button>
-                </form>
-                <form action="{{ route('editarPostagem', $postagem->id) }}" method="PUT">
-                    @csrf
-                    @method('PUT')
-                    <button class="btn btn-outline-secondary" type="submit">Editar</button>
-                </form>
+                <div class="col-6">
+                    <a href="/editar/{{ $postagem->id }}" class="btn btn-outline-secondary" type="submit">Editar</a>
+                </div>
+                <div class="col-6">
+                    <form action="{{ route('deletePostagem', $postagem->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar esta postagem?');">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-outline-warning" type="submit">Deletar</button>
+                    </form>
+                </div>
             </div>
             @endforeach
         </div>

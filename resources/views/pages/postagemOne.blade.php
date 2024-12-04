@@ -28,35 +28,38 @@
         <div class="col-4">
             <div class="row ms-2">
                 <h2 class="m-0 p-0" style="font-weight: 700; font-size: 1rem; text-align: start;">Comentários sobre o artigo</h2>
+
+                @foreach($comentarios as $comentario)
+                <div class="row mt-4 justify-content-start align-items-center">
+                    <div class="col-2">
+                        <img class="rounded-circle d-block" src="/img/usuario/{{ $comentario->user->foto }}" style="width: 50px; height: 50px; object-fit: contain;">
+                    </div>
+                    <div class="col-8" style="align-items: start; text-align: start; margin-left: 5%;">
+                        <a style="font-size: 0.7rem;">{{ $comentario->user->name }}</a></br>
+                        <a style="font-size: 0.7rem;">{{ $comentario->created_at }}</a>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <p style="font-size: .8rem; text-align: start;">{{ $comentario->comentario }}</p>
+                </div>
+                @endforeach
+
                 @if(auth()->check())
                 <form action="{{ route('salvar.comentario') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id_usuario" value="{{ $idUsuarioLogado }}" required>
                     <input type="hidden" name="id_postagem" value="{{ $postagem->id }}" required>
 
+                    <div class="mb-3 mt-3" style="text-align: start;">
+                        <label for="comentario" class="form-label">Fazer comentário</label>
+                        <input class="form-control" id="comentario" name="comentario" required>
+                    </div>
+                    <div class="row" style="justify-content: end; margin-right: 1%;">
+                        <button type="submit" class="btn btn-primary w-50">Comentar</button>
+                    </div>
 
-                    <label for="conteudo" class="form-label">Comentario</label>
-                    <input class="form-control" id="comentario" name="comentario" required>
-
-
-                    <button type="submit" class="btn btn-primary">Comentar</button>
                 </form>
                 @endif
-
-                @foreach($comentarios as $comentario)
-                <div class="row mt-4 justify-content-start align-items-center">
-                    <div class="col-sm-2 m-0 p-0">
-                        <img class="border rounded-circle p-4 d-block" src="/img/usuario/{{ $comentario->user->foto }}" style="width: 100px; height: 100px; object-fit: contain;">
-                    </div>
-                    <div class="col-sm-6 ms-2 m-0 p-0" style="align-items: start; text-align: start;">
-                        <a style="font-size: 0.9rem;">{{ $comentario->user->name }}</a></br>
-                        <a style="font-size: 0.9rem;">{{ $comentario->created_at }}</a>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <p style="font-size: .8rem; text-align: start;">{{ $comentario->comentario }}</p>
-                </div>
-                @endforeach
             </div>
         </div>
     </div>

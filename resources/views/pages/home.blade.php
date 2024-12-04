@@ -10,57 +10,9 @@
     <h1 class="display-3" style="font-weight: 600; margin-top: 15%;">FATOS EM PERSPECTIVA</h1>
     <p class="lead">Todo ângulo revela uma <a style="text-decoration: underline; color: #000; text-decoration-thickness: .8px;">nova história</a></p>
 
-    <!-- Cards (3 blocos lado a lado) -->
-    <div class="row my-5" style="margin-top: 15% !important;">
-        <div class="col-md-4">
-            <div class="card p-4">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-8 text-start">
-                            <h5 class="card-title mb-0">Lorem Ipsum</h5>
-                            <p class="card-text text-muted">Ipsum dummy</p>
-                        </div>
-                        <div class="col-4">
-                            <span class="border rounded-circle p-4 d-block"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-4">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-8 text-start">
-                            <h5 class="card-title mb-0">Lorem Ipsum</h5>
-                            <p class="card-text text-muted">Ipsum dummy</p>
-                        </div>
-                        <div class="col-4">
-                            <span class="border rounded-circle p-4 d-block"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-4">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-8 text-start">
-                            <h5 class="card-title mb-0">Lorem Ipsum</h5>
-                            <p class="card-text text-muted">Ipsum dummy</p>
-                        </div>
-                        <div class="col-4">
-                            <span class="border rounded-circle p-4 d-block"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Seção de artigos (Lista de posts) -->
-    <div class="row my-5 justify-content-center">
+    <div class="row justify-content-center" style="margin-top: 15%;">
         <div class="col-md-8">
             @foreach($postagens as $postagem)
             <div class="row mt-5"> <!-- aqui será volátil -->
@@ -85,11 +37,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 m-0 p-0">
+                        <div class="col-12 m-0 p-0" style="text-align: end;">
                             <h5 style="font-size: 0.8rem;">{{ $postagem->data_postagem }}</h5>
-                        </div>
-                        <div class="col-6 m-0 p-0 d-flex flex-row justify-content-center">
-                            <h5 style="font-size: 0.8rem; margin-left: 5%;"><i class="fa-regular fa-comments"></i> 100k</h5>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ Route::get('login/{id_usuario}/postagem/', [PostagemController::class, 'create']
 Route::get('postagem/{id}', [PostagemController::class, 'readOne'])->name('readOnePostagem');
 Route::post('/postagem', [PostagemController::class, 'store'])->name('savePostagem');
 Route::delete('postagem/{id}', [PostagemController::class, 'delete'])->name('deletePostagem');
-Route::get('postagem/{id}/editar', [PostagemController::class, 'visualizarEditar'])->name('visualizarEditar');
+Route::get('editar/{id}', [PostagemController::class, 'visualizarEditar'])->name('visualizarEditar');
 Route::put('postagem/{id}', [PostagemController::class, 'editar'])->name('editarPostagem');
 
 
